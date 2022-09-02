@@ -1,12 +1,3 @@
-// const express = require("express");
-// const dotenv = require("dotenv");
-// const mongoose = require("mongoose");
-// const app = express();
-// const authRoute = require("./routes/auth");
-// const authUsers = require("./routes/users");
-// const hotelsRoute = require("./routes/hotels");
-// const authRooms = require("./routes/rooms");
-
 import 'dotenv/config';
 
 import express from "express";
@@ -40,9 +31,6 @@ mongoose.connection.on("connected", () => {
 app.get("/", (req, res) => {
     res.send("hello first request!")
 });
-
-// middlewares - to prevent too much code in index.js so separate route folder is created.
-// creating middleware
 
 // app.use(cors({ origin: "http://localhost:3000", method: "GET" }))
 app.use(cors())
