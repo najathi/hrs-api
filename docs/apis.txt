@@ -9,7 +9,6 @@
     "title":"Best Hotel in the City",
     "desc":"Vegetarian hotel",
     "cheapestPrice":100
-
 }
 
 

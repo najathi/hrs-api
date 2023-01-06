@@ -2,17 +2,18 @@ import 'dotenv/config';
 
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+
 import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
+import customersRoute from "./routes/customers.js";
 import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
-import cookieParser from "cookie-parser";
-import cors from "cors";
 
 const app = express();
 
 const connect = async () => {
-
     try {
         await mongoose.connect(process.env.MONGO);
     } catch (error) {
@@ -41,6 +42,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
+app.use("/api/customers", customersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 
@@ -54,7 +56,7 @@ app.use((err, req, res, next) => {
     return res.status(errorStatus).json({
         success: false,
         status: errorStatus,
-        messsage: errorMessage,
+        message: errorMessage,
         stack: err.stack, //it will give more detail about stack
     });
 

@@ -13,6 +13,7 @@ export const register = async (req, res, next) => {
             // email:req.body.email,
 
             ...req.body,          // takes all properties username, email, country, city etc...
+            isAdmin: true,
             password: hash,
         })
 
@@ -21,6 +22,29 @@ export const register = async (req, res, next) => {
         res.status(200).send("User has been created.")
     } catch (error) {
         console.log("user creation error ", error);
+        next(error);
+    }
+}
+
+export const customerRegister = async (req, res, next) => {
+    try {
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(req.body.password, salt);
+
+        const newUser = new User({
+            // username:req.body.username,
+            // email:req.body.email,
+
+            ...req.body,          // takes all properties username, email, country, city etc...
+            isAdmin: false,
+            password: hash,
+        })
+
+        await newUser.save();
+        console.log("customer created");
+        res.status(200).send("Customer has been created.")
+    } catch (error) {
+        console.log("customer creation error ", error);
         next(error);
     }
 }

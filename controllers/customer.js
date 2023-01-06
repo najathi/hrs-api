@@ -2,7 +2,6 @@ import User from "../models/User.js";
 import { createError } from "../utils/error.js";
 
 export const updateUser = async (req, res, next) => {
-
     try {
         const updateUser = await User.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true })
         res.status(200).json(updateUser);
@@ -40,7 +39,7 @@ export const getUsers = async (req, res, next) => {
 
     console.log("User route")
     try {
-        const users = await User.find({ isAdmin: { $eq: true } });
+        const users = await User.find({ isAdmin: { $eq: false } });
         res.status(200).json(users);
     } catch (error) {
         console.log("get user controller" + error);
