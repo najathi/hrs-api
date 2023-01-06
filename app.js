@@ -10,6 +10,7 @@ import usersRoute from "./routes/users.js";
 import customersRoute from "./routes/customers.js";
 import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
+import ordersRoute from "./routes/orders.js";
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.use("/api/users", usersRoute);
 app.use("/api/customers", customersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
+app.use("/api/orders", ordersRoute);
 
 //Error Handler Middleware 
 app.use((err, req, res, next) => {
